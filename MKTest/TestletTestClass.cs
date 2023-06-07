@@ -10,15 +10,21 @@ namespace MKTest
         {
             List<Item> Items = new List<Item>();
             Items = GenerateItems();
+            Console.WriteLine("Before Randomization");
             foreach(var item in Items)
                 Console.WriteLine("{0}:{1}", item.ItemId,item.ItemType);    
             Testlet testlet = new Testlet("1", Items);
+
             Items=testlet.Randomize();
-            
+
+            Console.WriteLine("After Randomization");
             foreach(var item in Items)
                 Console.WriteLine("{0}:{1}", item.ItemId,item.ItemType);
-            Assert.AreNotEqual(1, 1);
-            Assert.AreNotEqual(10, 10);
+
+            var item1 =  Items[0].ItemType.ToString();
+            var item2 = Items[1].ItemType.ToString();
+            Assert.AreEqual(item1, "Pretest");
+            Assert.AreEqual(item2, "Pretest");
         }
         public List<Item> GenerateItems()
         {
