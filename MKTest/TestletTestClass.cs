@@ -33,36 +33,20 @@ namespace MKTest
         }
         private void GenerateItems()
         {
+            for (int i = 0; i < (Pretest + Operational) ; i++)
+            {
+                Item item = new Item();
+                item.ItemId =  (i + 1).ToString() ;
+                item.ItemType = i < Pretest ? 0 : (ItemTypeEnum)1;
+                Items.Add(item);
+            }
+
+
             //Generation of Items divided as per Pretest Item module and Operational Item module.
             //  GeneratePretestItems();  //Generate Pretest Items
             //   GenerateOperationalItems(); // Generate Operational Items
-            GenerateItem("Pretest");
-            GenerateItem("Operational");
-        }
 
-        private void GenerateItem(string itemType)          // Single function to generate both type data based on argument 
-        {
-            if (itemType == "Pretest")
-            {
-                for (int i = 0; i < Pretest; i++)
-                {
-                    Item item = new Item();
-                    item.ItemId = (i + 1).ToString();
-                    item.ItemType = 0;
-                    Items.Add(item);
-                }
-            }
-            if (itemType == "Operational")
-            {
-                for (int i = 0; i < Operational; i++)
-                {
-                    Item item = new Item();
-                    item.ItemId = (i + Pretest + 1).ToString();
-                    item.ItemType = (ItemTypeEnum)1;
-                    Items.Add(item);
-                }
 
-            }
         }
         //public void GeneratePretestItems()
         //{
